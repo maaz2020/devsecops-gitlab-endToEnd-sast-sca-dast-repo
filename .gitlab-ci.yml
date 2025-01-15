@@ -7,13 +7,13 @@ run-sast-job:
     stage: runSASTScanUsingSonarCloud
     image: maven:3.8.5-openjdk-17-slim
     script: |
-      mvn verify package sonar:sonar -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.organization=gitlabdevsecopsintegration -Dsonar.projectKey=gitlabdevsecopsintegration -Dsonar.token=2fda8f4a1af600afbede42c54c868083d8e34c01  
+      mvn verify package sonar:sonar -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.organization=gitlabdevsecend2endproject -Dsonar.projectKey=devsecops-gitlab-endToEnd-sast-sca-dast -Dsonar.token=$SONAR_TOKEN  
 
 run-sca-job:
     stage: runSCAScanUsingSnyk
     image: maven:3.8.5-openjdk-17-slim
     script: |
-      SNYK_TOKEN='2f4afa39-c493-4c6d-b34e-080c1a8f9014'
+      SNYK_TOKEN=$SNYK_TOKEN
       export SNYK_TOKEN
       mvn snyk:test -fn 
 
